@@ -1,4 +1,4 @@
-# Export a pandas dataframe to a online spreadsheet
+# Export a pandas dataframe to an online spreadsheet
 
 The online spreadsheet such as Google Sheets, Feishu Docs, is a good way to share data with others and is a powerful tool for data analysis and visualization. This package provides a simple way to export a pandas dataframe to a online spreadsheet.
 
