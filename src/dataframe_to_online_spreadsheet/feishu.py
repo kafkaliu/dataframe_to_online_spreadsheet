@@ -98,7 +98,7 @@ class FeishuAccessor:
                 "valueRanges": [
                     {
                         "range": body_range,
-                        "values": json.loads(df.to_json(orient='values'))
+                        "values": json.loads(df.to_json(orient='values', date_format='iso', date_unit='s'))
                     }
                 ]
             }
