@@ -9,7 +9,7 @@ import sys
 
 import src.dataframe_to_online_spreadsheet.feishu as feishu
 
-load_dotenv(find_dotenv())
+load_dotenv("feishu.env")
 
 LOG_FORMAT = "%(asctime)s - %(levelname)s - %(message)s"
 logging.basicConfig(format=LOG_FORMAT, level=logging.INFO,  handlers=[logging.StreamHandler(sys.stdout)])

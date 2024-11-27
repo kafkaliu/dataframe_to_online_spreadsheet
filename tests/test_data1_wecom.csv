@@ -1,0 +1,8 @@
+record_id,id,child_name,school_name,city,province,leads_type,business_type,create_time,active_time,channel_code,channel_level1_id,channel_level1_name,channel_level2_id,channel_level2_name,channel_level3_id,channel_level3_name,channel_promotion_course_code,channel_promotion_course_name,cc_id,cc_name,group_id,group_name,section_id,section_name,manager
+,1,李丽,School_50,Shanghai,Jiangsu,Type3,Business1,2024/7/31 7:31,2024/7/31 7:31,Code_69,50,Level1_1,25,Level2_1,12,Level3_1,CourseCode_1,Course_1,70,CC_1,54,Group_1,4,Section_1,LiuFei
+,2,王芳,School_23,Beijing,Beijing,Type1,Business1,2024/7/31 7:31,2024/7/31 7:31,Code_13,62,Level1_2,29,Level2_2,63,Level3_2,CourseCode_83,Course_2,26,CC_2,90,Group_2,68,Section_2,LiuFei
+rMtvdl,3,李军22-1,School_53,Chongqing,Beijing,Type1,Business2,2024/7/31 7:31,2024/7/31 7:31,Code_98,40,Level1_3,22,Level2_3,84,Level3_3,CourseCode_38,Course_3,40,CC_3,86,Group_3,39,Section_3,LiuFei
+rAORhh,4,王芳23-1,School_61,Chongqing,Shanghai,Type2,Business3,2024/7/31 7:31,2024/7/31 7:31,Code_68,5,Level1_4,53,Level2_4,96,Level3_4,CourseCode_54,Course_4,18,CC_4,79,Group_4,67,Section_4,LiuFei
+,5,王伟,School_25,Guangzhou,Guangdong,Type1,Business2,2024/7/31 7:31,2024/7/31 7:31,Code_55,26,Level1_5,66,Level2_5,71,Level3_5,CourseCode_60,Course_5,88,CC_5,37,Group_5,85,Section_5,LiuFei
+,6,李敏,School_70,Chongqing,Beijing,Type3,Business2,2024/7/31 7:31,2024/7/31 7:31,Code_56,88,Level1_6,58,Level2_6,80,Level3_6,CourseCode_76,Course_6,34,CC_6,86,Group_6,56,Section_6,LiuFei
+,7,陈军,School_98,Beijing,Jiangsu,Type1,Business3,2024/7/31 7:31,2024/7/31 7:31,Code_90,88,Level1_7,61,Level2_7,12,Level3_7,CourseCode_78,Course_7,97,CC_7,78,Group_7,32,Section_7,LiuFei
