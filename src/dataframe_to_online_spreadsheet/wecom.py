@@ -40,12 +40,19 @@ class WecomAccessor:
 
         access_token = self._client.get_access_token(app_id, app_secret)
 
+        if "record_id" in self._obj.columns:
+            result_to_be_added = self._obj[pd.isna(self._obj["record_id"])].drop("record_id", axis=1)
+            result_to_be_updated = self._obj[pd.notna(self._obj["record_id"])]
+        else:
+            result_to_be_added = self._obj.copy()
+            result_to_be_updated = pd.DataFrame()
+
         added = self._client.add_records(
             access_token,
             doc_id,
             sheet_id,
             fields_ids,
-            self._obj[pd.isna(self._obj["record_id"])].drop("record_id", axis=1),
+            result_to_be_added,
         )
 
         self._client.update_records(
@@ -53,7 +60,7 @@ class WecomAccessor:
             doc_id,
             sheet_id,
             fields_ids,
-            self._obj[pd.notna(self._obj["record_id"])],
+            result_to_be_updated,
         )
 
         return added
