@@ -25,7 +25,7 @@ def test_wecom():
     doc_id = os.getenv("DOC_ID")
     sheet_id = os.getenv("SHEET_ID")
 
-    sheet1_data = pd.read_csv("./tests/test_data1_wecom.csv")
+    sheet1_data = pd.read_csv("./tests/test_data1_wecom2.csv")
 
     fields_ids = {
         "f3jXlv": "FIELD_TYPE_NUMBER",
@@ -46,13 +46,14 @@ def test_wecom():
         "fZilZm": "FIELD_TYPE_TEXT",
         "faGRO9": "FIELD_TYPE_TEXT",
         "fcIPid": "FIELD_TYPE_TEXT",
-        "ffPlXC": "FIELD_TYPE_NUMBER",
+        "ffPlXC": "FIELD_TYPE_TEXT",
         "fgxTYC": "FIELD_TYPE_TEXT",
         "fpqHBM": "FIELD_TYPE_NUMBER",
         "fwLOij": "FIELD_TYPE_TEXT",
         "fxRfyy": "FIELD_TYPE_NUMBER",
         "fzNsma": "FIELD_TYPE_TEXT",
         "fwF1k7": "FIELD_TYPE_USER",
+        "fu0X00": "FIELD_TYPE_NUMBER"
     }
     records = sheet1_data.wecom.to_spreadsheet(
         app_id, app_secret, doc_id, sheet_id, fields_ids
@@ -103,6 +104,8 @@ def test_gen_add_records_payload():
         "fwLOij": "FIELD_TYPE_TEXT",
         "fxRfyy": "FIELD_TYPE_NUMBER",
         "fzNsma": "FIELD_TYPE_TEXT",
+        "fwF1k7": "FIELD_TYPE_USER",
+        "fu0X00": "FIELD_TYPE_NUMBER"
     }
     df = pd.read_csv("./tests/test_data1_wecom.csv")
     df = df[pd.isna(df["record_id"])]

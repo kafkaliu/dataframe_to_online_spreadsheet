@@ -170,6 +170,7 @@ class Client(object):
                 "values": {
                     field_id: self._gen_cell_value(fields_ids[field_id], row[field_id])
                     for field_id in fields_ids
+                    if pd.notna(row[field_id])
                 }
             },
         }
