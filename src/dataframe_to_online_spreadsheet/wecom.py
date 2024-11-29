@@ -181,7 +181,7 @@ class Client(object):
         """
 
         if field_type == "FIELD_TYPE_TEXT":
-            return [{"type": "text", "text": cell}]
+            return [{"type": "text", "text": str(cell)}]
         elif field_type == "FIELD_TYPE_USER":
             return [{"user_id": cell}]
         elif field_type == "FIELD_TYPE_NUMBER":
