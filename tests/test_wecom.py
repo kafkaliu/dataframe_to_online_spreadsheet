@@ -53,7 +53,7 @@ def test_wecom():
         "fxRfyy": "FIELD_TYPE_NUMBER",
         "fzNsma": "FIELD_TYPE_TEXT",
         "fwF1k7": "FIELD_TYPE_USER",
-        "fu0X00": "FIELD_TYPE_NUMBER"
+        "fu0X00": "FIELD_TYPE_NUMBER",
     }
     records = sheet1_data.wecom.to_spreadsheet(
         app_id, app_secret, doc_id, sheet_id, fields_ids
@@ -75,8 +75,20 @@ def test_client_get_fields():
     assert fields
 
 
+def test_client_truncate_records():
+    app_id = os.getenv("APP_ID")
+    app_secret = os.getenv("APP_SECRET")
+    doc_id = os.getenv("DOC_ID")
+    sheet_id = os.getenv("SHEET_ID")
+
+    client = wecom.Client()
+    access_token = client.get_access_token(app_id, app_secret)
+    client.truncate_records(access_token, doc_id, sheet_id)
+    assert True
+
+
 def test_gen_add_records_payload():
-    doc_id = os.getenv("DOC_ID")                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+    doc_id = os.getenv("DOC_ID")
     # sheet_id = os.getenv("SHEET_ID")
     sheet_id = "Z0adAv"  # sheet1
     fields_ids = {
@@ -105,7 +117,7 @@ def test_gen_add_records_payload():
         "fxRfyy": "FIELD_TYPE_NUMBER",
         "fzNsma": "FIELD_TYPE_TEXT",
         "fwF1k7": "FIELD_TYPE_USER",
-        "fu0X00": "FIELD_TYPE_NUMBER"
+        "fu0X00": "FIELD_TYPE_NUMBER",
     }
     df = pd.read_csv("./tests/test_data1_wecom.csv")
     df = df[pd.isna(df["record_id"])]
@@ -115,4 +127,3 @@ def test_gen_add_records_payload():
     assert "docid" in payload
     assert "sheet_id" in payload
     assert "records" in payload
-

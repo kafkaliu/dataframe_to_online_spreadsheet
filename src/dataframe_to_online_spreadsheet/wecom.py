@@ -19,7 +19,7 @@ class WecomAccessor:
         # TODO
         pass
 
-    def to_spreadsheet(self, app_id, app_secret, doc_id, sheet_id, fields_ids):
+    def to_spreadsheet(self, app_id, app_secret, doc_id, sheet_id, fields_ids, mode="append"):
         r"""
         Converts data to a Wecom smartsheet.
 
@@ -33,12 +33,16 @@ class WecomAccessor:
         - sheet_id: The id of the sheet of the smartsheet. NOTICE: The schema of the sheet should match the dataframe.
         - fields_ids: A fields list of the sheet.
             You should use `get_fields` to get the fields ids firstly. See also: https://developer.work.weixin.qq.com/document/path/100229
+        - mode: The mode of the operation, such as 'append', 'overwrite'. Default is `append`.
 
         Returns:
         - The new appended records of the smartsheet.
         """
 
         access_token = self._client.get_access_token(app_id, app_secret)
+
+        if mode == "overwrite":
+            self._client.truncate_records(access_token, doc_id, sheet_id)
 
         if "record_id" in self._obj.columns:
             result_to_be_added = self._obj[pd.isna(self._obj["record_id"])].drop("record_id", axis=1)
@@ -132,6 +136,45 @@ class Client(object):
             payload,
         )
         return resp["records"]
+
+    def truncate_records(self, access_token, doc_id, sheet_id):
+        r"""
+        Retrieve all the record and delete all the records.
+        See also: https://developer.work.weixin.qq.com/document/path/100230, https://developer.work.weixin.qq.com/document/path/100225
+        """
+
+        offset = 0
+        record_ids = []
+        while True:
+            payload = {
+                "docid": doc_id,
+                "sheet_id": sheet_id,
+                "offset": offset,
+                "limit": 10
+            }
+                
+            resp = self._post(
+                f"{self._host}/cgi-bin/wedoc/smartsheet/get_records?access_token={access_token}",
+                payload,
+            )
+            records = resp["records"]
+            record_ids.extend([r["record_id"] for r in records])
+            if not resp["has_more"]:
+                break
+            offset = resp["next"]
+
+        if record_ids:
+            payload = {
+                "docid": doc_id,
+                "sheet_id": sheet_id,
+                "record_ids": [rid for rid in record_ids]
+            }
+            self._post(
+                f"{self._host}/cgi-bin/wedoc/smartsheet/delete_records?access_token={access_token}",
+                payload,
+            )
+
+        return
 
     def update_records(self, access_token, doc_id, sheet_id, fields_ids, df):
         if df.empty:
