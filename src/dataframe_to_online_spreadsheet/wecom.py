@@ -150,7 +150,7 @@ class Client(object):
                 "docid": doc_id,
                 "sheet_id": sheet_id,
                 "offset": offset,
-                "limit": 10
+                "limit": 1000
             }
                 
             resp = self._post(
